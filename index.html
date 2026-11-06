@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f7f4" />
+    <meta name="description" content="Split a video into size-limited MP4 parts directly in your browser. Your file stays on your device." />
+    <title>ClipCut — Split videos by file size</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="ClipCut home" data-i18n-aria="brandHome"><span class="brand-mark" aria-hidden="true">◧</span> ClipCut</a>
+        <div class="topbar-actions">
+          <span class="topbar-note"><span class="privacy-dot"></span><span data-i18n="privacy">Private by design</span></span>
+          <div class="language-switch" role="group" aria-label="Language" data-i18n-aria="languageLabel">
+            <button type="button" class="language-button" data-language="en" lang="en" aria-pressed="true" aria-label="Switch to English" data-i18n-aria="switchEnglish">EN</button>
+            <button type="button" class="language-button" data-language="th" lang="th" aria-pressed="false" aria-label="เปลี่ยนเป็นภาษาไทย" data-i18n-aria="switchThai">TH</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">VIDEO UTILITY / 001</span></div>
+        <h1 id="page-title"><span data-i18n="headingFirst">Make a long video</span><br /><em data-i18n="headingSecond">fit anywhere.</em></h1>
+        <p data-i18n="intro">Choose a video, set the maximum file size, and download each part. Your video never leaves this browser.</p>
+      </section>
+
+      <section class="workspace" aria-label="Video splitter" data-i18n-aria="splitterLabel">
+        <div class="section-head">
+          <span class="section-index" data-i18n="setupHeading">01 / SETUP</span>
+          <span class="section-hint" data-i18n="formatHint">MP4 in · MP4 out</span>
+        </div>
+
+        <label id="drop-zone" class="drop-zone" for="video-file">
+          <input id="video-file" type="file" accept="video/mp4,.mp4,video/*" />
+          <span class="upload-glyph" aria-hidden="true">↥</span>
+          <span class="drop-title"><span data-i18n="dropTitle">Drop your video here</span> <span data-i18n="browseFiles">or browse files</span></span>
+          <span class="drop-help" data-i18n="dropHelp">One video at a time · MP4 works best</span>
+        </label>
+
+        <div id="file-card" class="file-card hidden" aria-live="polite">
+          <div class="file-icon" aria-hidden="true">▶</div>
+          <div class="file-details">
+            <strong id="file-name"></strong>
+            <span id="file-meta"></span>
+          </div>
+          <button id="remove-file" class="icon-button" type="button" aria-label="Remove selected video" data-i18n-aria="removeFile">×</button>
+        </div>
+
+        <div class="limit-row">
+          <div>
+            <label for="size-limit" data-i18n="limitLabel">Maximum size per part</label>
+            <p data-i18n="limitHelp">Every downloadable part is checked against this limit.</p>
+          </div>
+          <div class="number-field">
+            <input id="size-limit" type="number" min="1" step="1" value="100" inputmode="numeric" />
+            <span>MB</span>
+          </div>
+        </div>
+
+        <button id="split-button" class="primary-button" type="button" disabled>
+          <span data-i18n="splitButton">Split video</span><span aria-hidden="true">↗</span>
+        </button>
+        <p id="setup-note" class="setup-note">Choose a video to get started.</p>
+      </section>
+
+      <section id="progress-section" class="progress-section hidden" aria-live="polite">
+        <div class="section-head"><span class="section-index" data-i18n="processingHeading">02 / PROCESSING</span><span id="process-mode" class="section-hint"></span></div>
+        <div class="progress-card">
+          <div class="activity-indicator" aria-hidden="true"></div>
+          <div class="progress-copy"><strong id="progress-title">Preparing video…</strong><p id="progress-detail">This can take a while for long videos.</p></div>
+          <button id="cancel-button" class="text-button" type="button" data-i18n="cancel">Cancel</button>
+        </div>
+      </section>
+
+      <section id="results-section" class="results-section hidden" aria-live="polite">
+        <div class="section-head"><span class="section-index" data-i18n="resultsHeading">02 / YOUR PARTS</span><span id="results-count" class="section-hint"></span></div>
+        <div id="results-list" class="results-list"></div>
+        <p class="results-note" data-i18n="resultsNote">Download the parts before closing this tab. They are held only in browser memory.</p>
+      </section>
+
+      <p id="error-message" class="error-message hidden" role="alert"></p>
+
+      <footer class="footer">
+        <span data-i18n="footerPrivacy">LOCAL PROCESSING · NO UPLOADS · NO ACCOUNT</span>
+        <span data-i18n="footerTagline">Made for the files that just won't fit.</span>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
